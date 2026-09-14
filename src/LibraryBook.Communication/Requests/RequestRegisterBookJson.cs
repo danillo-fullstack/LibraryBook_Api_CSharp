@@ -10,4 +10,5 @@ public class RequestRegisterBookJson
     public string? UrlImage { get; set; }
     public int TotalStar { get; set; }
     public BookStatusType Status { get; set; }
+    public string? Comment  { get; set; } 
 }
