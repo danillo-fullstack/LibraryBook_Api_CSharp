@@ -1,3 +1,4 @@
+using LibraryBook.Application.UseCase.Books.Register;
 using LibraryBook.Communication.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +11,8 @@ namespace LibraryBook.Api.Controllers
         [HttpPost]
         public IActionResult Register([FromBody] RequestRegisterBookJson request)
         {
-            return Created();
+            var result = RegisterBooksUseCase.Execute(request);
+            return Created(string.Empty, result);
         }
     }
 }
