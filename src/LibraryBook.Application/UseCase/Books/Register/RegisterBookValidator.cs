@@ -1,5 +1,6 @@
 using FluentValidation;
 using LibraryBook.Communication.Requests;
+using LibraryBook.Exception;
 
 namespace LibraryBook.Application.UseCase.Books.Register;
 
@@ -9,16 +10,16 @@ public class RegisterBookValidator : AbstractValidator<RequestRegisterBookJson>
     {
         RuleFor(books => books.Title)
             .Cascade(CascadeMode.Stop)
-            .NotEmpty().WithMessage("Title is required")
-            .Length(2,120).WithMessage("Title must be between 2 and 120 characters");
+            .NotEmpty().WithMessage(ResourcesErrorMessages.TITLE_REQUIRED)
+            .Length(2,120).WithMessage(ResourcesErrorMessages.TITLE_MUST_BE_BETWEEN_2_AND_120_CARACTERES);
 
         RuleFor(books => books.Author)
             .Cascade(CascadeMode.Stop)
-            .NotEmpty().WithMessage("Author is required")
-            .Length(2,120).WithMessage("Author must be between 2 and 120 characters");
+            .NotEmpty().WithMessage(ResourcesErrorMessages.AUTHOR_REQUIRED)
+            .Length(2,120).WithMessage(ResourcesErrorMessages.AUTHOR_MUST_BE_BETWEEN_2_AND_120_CARACTERES);
         
-        RuleFor(books => books.Genre).IsInEnum().WithMessage("Genre is invalid");
-        RuleFor(books => books.Status).IsInEnum().WithMessage("Status is invalid");
+        RuleFor(books => books.Genre).IsInEnum().WithMessage(ResourcesErrorMessages.GENRE_INVALID);
+        RuleFor(books => books.Status).IsInEnum().WithMessage(ResourcesErrorMessages.STATUS_INVALID);
         
     }
 }
